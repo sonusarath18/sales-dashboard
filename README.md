@@ -1,29 +1,29 @@
 # sales-dashboard
-pip install django
+pip install django,
 
 
 
-python manage.py create superuser
+python manage.py create superuser,
 
 
 
-python manage.py makemigrarions
+python manage.py makemigrarions,
 
 
 
-python manage.py makemigrate 
+python manage.py makemigrate ,
 
 
 
-pip install django-heroku
+pip install django-heroku,
 
 
 
-pip install gunicorn
+pip install gunicorn,
 
 
 
-pip install djangorestframework
+pip install djangorestframework,
 
 
 
