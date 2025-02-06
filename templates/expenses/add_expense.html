@@ -1,0 +1,105 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container mt-4">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{% url 'expenses'%}">Expenses</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Add Expenses</li>
+    </ol>
+  </nav>
+
+  <div class="card">
+    <div class="card-body">
+      <form action="{% url 'add-expenses' %}" method="post">
+        {% include 'partials/_messages.html'%} {% csrf_token %}
+        <div class="form-group">
+          <label for="">Amount</label>
+          <input
+            type="text"
+            id="amount"
+            class="form-control form-control-sm"
+            name="amount"
+            value="{{values.amount}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="">customer_name</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            name="customer_name"
+            value="{{values.customer_name}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="product_name">Product Name</label>
+          <select class="form-control" name="product_name">
+            {% for product_name in product_names %}
+              <option value="{{ product_name }}">{{ product_name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+         <div class="form-group">
+          <label for="">total_price</label>
+          <input
+            type="number"
+            id="total_price"
+            class="form-control form-control-sm"
+            name="total_price"
+            value="{{values.total_price}}"
+/>
+
+        </div> <div class="form-group">
+          <label for="">quantity</label>
+          <input
+            type="number"
+            id="quantity"
+            class="form-control form-control-sm"
+            name="quantity"
+            value="{{values.quantity}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="">Sales Person</label>
+          <select class="form-control" name="category">
+            {% for category in categories%}
+            <option name="category" value="{{category.name}}"
+              >{{category.name}}</option>
+
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="">Date of Expense</label>
+          <input
+            type="date"
+            class="form-control form-control-sm"
+            name="expense_date"
+          />
+        </div>
+
+        <input
+          type="submit"
+          value="Submit"
+          class="btn btn-primary btn-primary-sm"
+        />
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  document.getElementById('amount').addEventListener('input', calculateTotal);
+  document.getElementById('quantity').addEventListener('input', calculateTotal);
+
+  function calculateTotal() {
+      const amount = parseFloat(document.getElementById('amount').value) || 0;
+      const quantity = parseInt(document.getElementById('quantity').value) || 0;
+      const totalPrice = amount * quantity;
+      document.getElementById('total_price').value = totalPrice.toFixed(2);
+  }
+</script>
+
+
+{% endblock %}

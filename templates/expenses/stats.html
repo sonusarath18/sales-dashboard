@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<style>
+  body {
+      font-family: Arial, sans-serif;
+  }
+
+  .low-stock {
+      color: red;
+  }
+.stats {
+  display: inline-grid;
+  background-color: #111111;
+  color: #fff;
+  border-radius: 1rem;
+  border: 1px solid gray;
+  padding: 10px;
+}
+
+.shadow {
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.stat {
+  display: inline-grid;
+  width: 100%;
+  grid-template-columns: repeat(1, 1fr);
+  column-gap: 10rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.stat-title {
+  grid-column-start: 1;
+  white-space: nowrap;
+  color: rgb(197, 194, 194);
+}
+
+.stat-value {
+  grid-column-start: 1;
+  white-space: nowrap;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 1000;
+}
+
+.stat-desc {
+  grid-column-start: 1;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: rgb(197, 194, 194);
+}
+</style>
+<div class="container mt-4" >
+  <div class="row">
+    <div class="col-md-10">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="">Sales Dashboard</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+           Summary
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="col-md-2">
+      <a href="" class="btn btn-primary">BACK</a>
+    </div>
+
+  </div>
+
+ <div class="row">
+<div class="col-md-4">
+    </div>
+
+ </div>
+</div>
+
+<div class="neww" style="display: flex;justify-content: space-around;padding: 30px 1px;">
+  <div class="stats shadow">
+  
+    <div class="stat">
+      <div class="stat-title" style="font-size: 20px;">Total Revenue: </div>
+      <div class="stat-value"><span id="totalRevenue">0</span></div>
+    </div>
+    
+  </div>
+  <div class="stats shadow">
+    
+    <div class="stat">
+      <div class="stat-title" style="font-size: 25px;">Total Sales: </div>
+      <div class="stat-value"><span id="totalSales">0</span></div>
+    </div>
+</div>
+
+  
+</div>
+
+
+<div class="row" style="display: flex;justify-content: space-around;">
+    <div class="col-md-3" style="text-align: center;width: 100%;height: 100%;align-items: center;justify-content: center;">
+      <h5>Sales Trends for Current Month</h5>
+
+     <canvas id="salesTrendsChart" width="400" height="400" style="display: flex;background-color:white;border-radius: 10px;padding: 10px;"></canvas>
+    </div>
+    <div class="col-md-3" style="text-align: center;">
+      <h6>Revenue Breakdown by Salesperson</h6>
+
+      <canvas id="myChart" width="400" height="400" style="display: flex;background-color:white;border-radius: 10px;padding: 10px;"></canvas>
+    </div>
+    <div class="col-md-3" style="text-align: center;">
+      <h5>Sales Trends</h5>
+      <canvas id="salesTrendChart" width="400" height="400" style="display: flex;background-color:white;border-radius: 10px;padding: 10px;"></canvas>
+    </div>
+    
+    
+</div>
+
+
+   
+
+   
+<div class="container mt-5">
+  <!-- Top-Selling Products Section -->
+  <div class="card shadow-lg border-0 mb-4">
+      <div class="card-header bg-gradient text-white d-flex align-items-center" style="background:green;">
+          <i class="fas fa-chart-line fa-lg me-2"></i>
+          <h3 class="mb-0">Top-Selling Products</h3>
+      </div>
+      <div class="card-body">
+          <ul id="topProducts" class="list-group list-group-flush"></ul>
+      </div>
+  </div>
+
+  <!-- Low Stock Products Section -->
+  <div class="card shadow-lg border-0">
+      <div class="card-header bg-gradient text-white d-flex align-items-center" style="background: linear-gradient(45deg, #dc3545, #ff6b6b);">
+          <i class="fas fa-box-open fa-lg me-2"></i>
+          <h3 class="mb-0">Low Stock Products</h3>
+      </div>
+      <div class="card-body">
+          <ul id="lowStockProducts" class="list-group list-group-flush"></ul>
+      </div>
+  </div>
+</div>
+
+    <script src="{% static 'js/total.js' %}"></script>
+
+    <script src="{% static 'js/total.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="{% static 'js/getCategoryData.js' %}"></script>
+    <script src="{% static 'js/stats.js' %}"></script>
+
+
+
+
+{% endblock content %}
+
+
